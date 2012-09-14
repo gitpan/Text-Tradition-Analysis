@@ -1,0 +1,58 @@
+{
+   "abstract" : "functions for stemma analysis of a tradition",
+   "author" : [
+      "Tara L Andrews <aurum@cpan.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "ExtUtils::MakeMaker version 6.62, CPAN::Meta::Converter version 2.112150",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Text-Tradition-Analysis",
+   "no_index" : {
+      "directory" : [
+         "t",
+         "inc"
+      ]
+   },
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.62",
+            "Test::More::UTF8" : 0,
+            "Text::Tradition::Directory" : 0
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : 0
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Algorithm::Diff" : 0,
+            "Bio::Phylo::IO" : 0,
+            "File::Which" : 0,
+            "File::chdir" : 0,
+            "Graph" : 0,
+            "Graph::Reader::Dot" : 0,
+            "IPC::Run" : 0,
+            "JSON" : 0,
+            "LWP::UserAgent" : 0,
+            "Moose" : 0,
+            "Moose::Role" : 0,
+            "Set::Scalar" : 0,
+            "Text::Tradition" : 0,
+            "Text::Tradition::Error" : 0,
+            "TryCatch" : 0,
+            "perl" : "5.012"
+         }
+      }
+   },
+   "release_status" : "stable",
+   "version" : "1.1"
+}

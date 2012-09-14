@@ -10,13 +10,12 @@ use JSON qw/ to_json decode_json /;
 use LWP::UserAgent;
 use Set::Scalar;
 use Text::Tradition::Analysis::Result;
-use Text::Tradition::Directory;
 use Text::Tradition::Stemma;
 use TryCatch;
 
 use vars qw/ @EXPORT_OK $VERSION /;
 @EXPORT_OK = qw/ run_analysis group_variants analyze_variant_location wit_stringify /;
-$VERSION = "1.0";
+$VERSION = "1.1";
 
 
 my $SOLVER_URL = 'http://byzantini.st/cgi-bin/graphcalc.cgi';
@@ -26,6 +25,30 @@ my $unsolved_problems = {};
 
 Text::Tradition::Analysis - functions for stemma analysis of a tradition
 
+=head1 DESCRIPTION
+
+Text::Tradition is a library for representation and analysis of collated
+texts, particularly medieval ones.  Where the Collation is the central
+feature of a Tradition, it may also have one or more stemmata associated
+with it, and these stemmata may be analyzed. This package provides the
+following modules:
+
+=over 4
+
+=item * L<Text::Tradition::HasStemma> - a role that will be composed into
+Text::Tradition objects, providing the ability for Text::Tradition::Stemma
+objects to be associated with them.
+
+=item * L<Text::Tradition::Stemma> - an object class that represents stemma
+hypotheses, both rooted (with a single archetype) and unrooted (e.g.
+phylogenetic trees).
+
+=item * Text::Tradition::Analysis (this package). Provides functions for
+the analysis of a given stemma against the collation within a given
+Tradition.
+
+=back
+
 =head1 SYNOPSIS
 
   use Text::Tradition;
@@ -34,29 +57,10 @@ Text::Tradition::Analysis - functions for stemma analysis of a tradition
     'name' => 'this is a text',
     'input' => 'TEI',
     'file' => '/path/to/tei_parallel_seg_file.xml' );
-  $t->enable_stemmata;
   $t->add_stemma( 'dotfile' => $stemmafile );
 
   my $variant_data = run_analysis( $tradition );
-  # Recalculate rank $n treating all orthographic variants as equivalent
-  my $reanalyze = analyze_variant_location( $tradition, $n, 0, 'orthographic' );
     
-=head1 DESCRIPTION
-
-Text::Tradition is a library for representation and analysis of collated
-texts, particularly medieval ones.  Where the Collation is the central feature of
-a Tradition, it may also have one or more temmata associated with it, and these stemmata may be analyzed. This package provides the following modules:
-
-=over 4
-
-=item * L<Text::Tradition::HasStemma> - a role that can be composed into Text::Tradition objects, providing the ability for Text::Tradition::Stemma objects to be associated with them.
-
-=item * L<Text::Tradition::Stemma> - an object class that represents stemma hypotheses, both rooted (with a single archetype) and unrooted (e.g. phylogenetic trees).
-
-=item * Text::Tradition::Analysis (this package). Provides functions for the analysis of a given stemma against the collation within a given Tradition.
-
-=back
-
 =head1 SUBROUTINES
 
 =head2 run_analysis( $tradition, %opts )
@@ -87,7 +91,6 @@ my $datafile = 't/data/florilegium_tei_ps.xml';
 my $tradition = Text::Tradition->new( 'input' => 'TEI',
                                       'name' => 'test0',
                                       'file' => $datafile );
-$tradition->enable_stemmata;
 my $s = $tradition->add_stemma( 'dotfile' => 't/data/florilegium.dot' );
 is( ref( $s ), 'Text::Tradition::Stemma', "Added stemma to tradition" );
 
@@ -173,6 +176,11 @@ sub run_analysis {
 	if( exists $opts{'calcdir'} ) {
 		$dir = delete $opts{'calcdir'}
 	} elsif ( exists $opts{'calcdsn'} ) {
+		eval { require Text::Tradition::Directory };
+		if( $@ ) {
+			throw( "Could not instantiate a directory for " . $opts{'calcdsn'}
+				. ": $@" );
+		}
 		$dir = Text::Tradition::Directory->new( dsn => $opts{'calcdsn'} );
 	}
 

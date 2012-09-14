@@ -15,12 +15,9 @@ eval { no warnings; binmode $DB::OUT, ':utf8'; $DB::deep = 1000 };
 my $tradition = Text::Tradition->new(
 	'input' => 'Self',
 	'file' => 't/data/besoin.xml' );
-$tradition->enable_stemmata;
 $tradition->add_stemma( 'dotfile' => 't/data/besoin.dot' );
 
 # Run the analysis of the tradition
-## TODO Make proper test db
-my $calcdsn = 'dbi:SQLite:dbname=t/data/analysis.db';
 
 my %expected = (
     2 => 'type1',
