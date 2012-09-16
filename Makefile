@@ -1,7 +1,7 @@
 # This Makefile is for the Text::Tradition::Analysis extension to perl.
 #
 # It was generated automatically by MakeMaker version
-# 6.62 (Revision: 66200) from the contents of
+# 6.6302 (Revision: 66302) from the contents of
 # Makefile.PL. Don't edit this file, edit Makefile.PL instead.
 #
 #       ANY CHANGES MADE HERE WILL BE LOST!
@@ -13,14 +13,14 @@
 
 #     ABSTRACT => q[functions for stemma analysis of a tradition]
 #     AUTHOR => [q[Tara L Andrews <aurum@cpan.org>]]
-#     BUILD_REQUIRES => { ExtUtils::MakeMaker=>q[6.62], Test::More::UTF8=>q[0], Text::Tradition::Directory=>q[0] }
+#     BUILD_REQUIRES => { ExtUtils::MakeMaker=>q[6.59], Test::More::UTF8=>q[0], Text::Tradition::Directory=>q[0] }
 #     CONFIGURE_REQUIRES => {  }
 #     DISTNAME => q[Text-Tradition-Analysis]
 #     LICENSE => q[perl]
 #     MIN_PERL_VERSION => q[5.012]
 #     NAME => q[Text::Tradition::Analysis]
 #     NO_META => q[1]
-#     PREREQ_PM => { IPC::Run=>q[0], Bio::Phylo::IO=>q[0], File::Which=>q[0], Graph=>q[0], File::chdir=>q[0], Text::Tradition=>q[0], Text::Tradition::Directory=>q[0], Text::Tradition::Error=>q[0], Algorithm::Diff=>q[0], Moose=>q[0], Moose::Role=>q[0], ExtUtils::MakeMaker=>q[6.62], Test::More::UTF8=>q[0], Set::Scalar=>q[0], TryCatch=>q[0], LWP::UserAgent=>q[0], Graph::Reader::Dot=>q[0], JSON=>q[0] }
+#     PREREQ_PM => { IPC::Run=>q[0], Bio::Phylo::IO=>q[0], File::Which=>q[0], Graph=>q[0], File::chdir=>q[0], Text::Tradition=>q[0], Text::Tradition::Directory=>q[0], Text::Tradition::Error=>q[0], Algorithm::Diff=>q[0], Moose=>q[0], Moose::Role=>q[0], ExtUtils::MakeMaker=>q[6.59], Test::More::UTF8=>q[0], Set::Scalar=>q[0], TryCatch=>q[0], LWP::UserAgent=>q[0], Graph::Reader::Dot=>q[0], JSON=>q[0] }
 #     VERSION => q[1.1]
 #     VERSION_FROM => q[lib/Text/Tradition/Analysis.pm]
 #     dist => { PREOP=>q[$(PERL) -I. "-MModule::Install::Admin" -e "dist_preop(q($(DISTVNAME)))"] }
@@ -31,30 +31,30 @@
 
 # --- MakeMaker const_config section:
 
-# These definitions are from config.sh (via /opt/local/lib/perl5/5.12.4/darwin-multi-2level/Config.pm).
+# These definitions are from config.sh (via /opt/local/lib/perl5/5.16.0/darwin-thread-multi-2level/Config.pm).
 # They may have been overridden via Makefile.PL or on the command line.
 AR = ar
-CC = /usr/bin/llvm-gcc-4.2
+CC = /usr/bin/clang
 CCCDLFLAGS =  
 CCDLFLAGS =  
 DLEXT = bundle
 DLSRC = dl_dlopen.xs
 EXE_EXT = 
 FULL_AR = /usr/bin/ar
-LD = env MACOSX_DEPLOYMENT_TARGET=10.3 /usr/bin/llvm-gcc-4.2
+LD = env MACOSX_DEPLOYMENT_TARGET=10.3 /usr/bin/clang
 LDDLFLAGS = -L/opt/local/lib  -bundle -undefined dynamic_lookup -fstack-protector
 LDFLAGS = -L/opt/local/lib  -fstack-protector
 LIBC = 
 LIB_EXT = .a
 OBJ_EXT = .o
 OSNAME = darwin
-OSVERS = 11.3.0
+OSVERS = 12.0.0
 RANLIB = ranlib
-SITELIBEXP = /opt/local/lib/perl5/site_perl/5.12.4
-SITEARCHEXP = /opt/local/lib/perl5/site_perl/5.12.4/darwin-multi-2level
+SITELIBEXP = /opt/local/lib/perl5/site_perl/5.16.0
+SITEARCHEXP = /opt/local/lib/perl5/site_perl/5.16.0/darwin-thread-multi-2level
 SO = dylib
-VENDORARCHEXP = /opt/local/lib/perl5/vendor_perl/5.12.4/darwin-multi-2level
-VENDORLIBEXP = /opt/local/lib/perl5/vendor_perl/5.12.4
+VENDORARCHEXP = /opt/local/lib/perl5/vendor_perl/5.16.0/darwin-thread-multi-2level
+VENDORLIBEXP = /opt/local/lib/perl5/vendor_perl/5.16.0
 
 
 # --- MakeMaker constants section:
@@ -84,52 +84,52 @@ PREFIX = $(SITEPREFIX)
 PERLPREFIX = /opt/local
 SITEPREFIX = /opt/local
 VENDORPREFIX = /opt/local
-INSTALLPRIVLIB = /opt/local/lib/perl5/5.12.4
+INSTALLPRIVLIB = /opt/local/lib/perl5/5.16.0
 DESTINSTALLPRIVLIB = $(DESTDIR)$(INSTALLPRIVLIB)
-INSTALLSITELIB = /opt/local/lib/perl5/site_perl/5.12.4
+INSTALLSITELIB = /opt/local/lib/perl5/site_perl/5.16.0
 DESTINSTALLSITELIB = $(DESTDIR)$(INSTALLSITELIB)
-INSTALLVENDORLIB = /opt/local/lib/perl5/vendor_perl/5.12.4
+INSTALLVENDORLIB = /opt/local/lib/perl5/vendor_perl/5.16.0
 DESTINSTALLVENDORLIB = $(DESTDIR)$(INSTALLVENDORLIB)
-INSTALLARCHLIB = /opt/local/lib/perl5/5.12.4/darwin-multi-2level
+INSTALLARCHLIB = /opt/local/lib/perl5/5.16.0/darwin-thread-multi-2level
 DESTINSTALLARCHLIB = $(DESTDIR)$(INSTALLARCHLIB)
-INSTALLSITEARCH = /opt/local/lib/perl5/site_perl/5.12.4/darwin-multi-2level
+INSTALLSITEARCH = /opt/local/lib/perl5/site_perl/5.16.0/darwin-thread-multi-2level
 DESTINSTALLSITEARCH = $(DESTDIR)$(INSTALLSITEARCH)
-INSTALLVENDORARCH = /opt/local/lib/perl5/vendor_perl/5.12.4/darwin-multi-2level
+INSTALLVENDORARCH = /opt/local/lib/perl5/vendor_perl/5.16.0/darwin-thread-multi-2level
 DESTINSTALLVENDORARCH = $(DESTDIR)$(INSTALLVENDORARCH)
 INSTALLBIN = /opt/local/bin
 DESTINSTALLBIN = $(DESTDIR)$(INSTALLBIN)
-INSTALLSITEBIN = /opt/local/bin
+INSTALLSITEBIN = /opt/local/libexec/perl5.16/sitebin
 DESTINSTALLSITEBIN = $(DESTDIR)$(INSTALLSITEBIN)
-INSTALLVENDORBIN = /opt/local/bin
+INSTALLVENDORBIN = /opt/local/libexec/perl5.16
 DESTINSTALLVENDORBIN = $(DESTDIR)$(INSTALLVENDORBIN)
 INSTALLSCRIPT = /opt/local/bin
 DESTINSTALLSCRIPT = $(DESTDIR)$(INSTALLSCRIPT)
-INSTALLSITESCRIPT = /opt/local/bin
+INSTALLSITESCRIPT = /opt/local/libexec/perl5.16/sitebin
 DESTINSTALLSITESCRIPT = $(DESTDIR)$(INSTALLSITESCRIPT)
-INSTALLVENDORSCRIPT = /opt/local/bin
+INSTALLVENDORSCRIPT = /opt/local/libexec/perl5.16
 DESTINSTALLVENDORSCRIPT = $(DESTDIR)$(INSTALLVENDORSCRIPT)
 INSTALLMAN1DIR = /opt/local/share/man/man1p
 DESTINSTALLMAN1DIR = $(DESTDIR)$(INSTALLMAN1DIR)
-INSTALLSITEMAN1DIR = /opt/local/share/man/man1
+INSTALLSITEMAN1DIR = /opt/local/share/perl5.16/siteman/man1
 DESTINSTALLSITEMAN1DIR = $(DESTDIR)$(INSTALLSITEMAN1DIR)
-INSTALLVENDORMAN1DIR = /opt/local/share/man/man1
+INSTALLVENDORMAN1DIR = /opt/local/share/perl5.16/man/man1
 DESTINSTALLVENDORMAN1DIR = $(DESTDIR)$(INSTALLVENDORMAN1DIR)
 INSTALLMAN3DIR = /opt/local/share/man/man3p
 DESTINSTALLMAN3DIR = $(DESTDIR)$(INSTALLMAN3DIR)
-INSTALLSITEMAN3DIR = /opt/local/share/man/man3
+INSTALLSITEMAN3DIR = /opt/local/share/perl5.16/siteman/man3
 DESTINSTALLSITEMAN3DIR = $(DESTDIR)$(INSTALLSITEMAN3DIR)
-INSTALLVENDORMAN3DIR = /opt/local/share/man/man3
+INSTALLVENDORMAN3DIR = /opt/local/share/perl5.16/man/man3
 DESTINSTALLVENDORMAN3DIR = $(DESTDIR)$(INSTALLVENDORMAN3DIR)
 PERL_LIB =
-PERL_ARCHLIB = /opt/local/lib/perl5/5.12.4/darwin-multi-2level
+PERL_ARCHLIB = /opt/local/lib/perl5/5.16.0/darwin-thread-multi-2level
 LIBPERL_A = libperl.a
 FIRST_MAKEFILE = Makefile
 MAKEFILE_OLD = Makefile.old
 MAKE_APERL_FILE = Makefile.aperl
 PERLMAINCC = $(CC)
-PERL_INC = /opt/local/lib/perl5/5.12.4/darwin-multi-2level/CORE
-PERL = /opt/local/bin/perl "-Iinc"
-FULLPERL = /opt/local/bin/perl "-Iinc"
+PERL_INC = /opt/local/lib/perl5/5.16.0/darwin-thread-multi-2level/CORE
+PERL = /opt/local/bin/perl5.16 "-Iinc"
+FULLPERL = /opt/local/bin/perl5.16 "-Iinc"
 ABSPERL = $(PERL)
 PERLRUN = $(PERL)
 FULLPERLRUN = $(FULLPERL)
@@ -142,9 +142,9 @@ PERM_DIR = 755
 PERM_RW = 644
 PERM_RWX = 755
 
-MAKEMAKER   = /opt/local/lib/perl5/5.12.4/ExtUtils/MakeMaker.pm
-MM_VERSION  = 6.62
-MM_REVISION = 66200
+MAKEMAKER   = /opt/local/lib/perl5/5.16.0/ExtUtils/MakeMaker.pm
+MM_VERSION  = 6.6302
+MM_REVISION = 66302
 
 # FULLEXT = Pathname for extension directory (eg Foo/Bar/Oracle).
 # BASEEXT = Basename part of FULLEXT. May be just equal FULLEXT. (eg Oracle)
@@ -212,13 +212,13 @@ PM_TO_BLIB = lib/Text/Tradition/Analysis/Result.pm \
 
 
 # --- MakeMaker platform_constants section:
-MM_Unix_VERSION = 6.62
+MM_Unix_VERSION = 6.6302
 PERL_MALLOC_DEF = -DPERL_EXTMALLOC_DEF -Dmalloc=Perl_malloc -Dfree=Perl_mfree -Drealloc=Perl_realloc -Dcalloc=Perl_calloc
 
 
 # --- MakeMaker tool_autosplit section:
 # Usage: $(AUTOSPLITFILE) FileToSplit AutoDirToSplitInto
-AUTOSPLITFILE = $(ABSPERLRUN)  -e 'use AutoSplit;  autosplit($$ARGV[0], $$ARGV[1], 0, 1, 1)' --
+AUTOSPLITFILE = $(ABSPERLRUN)  -e 'use AutoSplit;  autosplit($$$$ARGV[0], $$$$ARGV[1], 0, 1, 1)' --
 
 
 
@@ -598,17 +598,17 @@ ci :
 distmeta : create_distdir metafile
 	$(NOECHO) cd $(DISTVNAME) && $(ABSPERLRUN) -MExtUtils::Manifest=maniadd -e 'exit unless -e q{META.yml};' \
 	  -e 'eval { maniadd({q{META.yml} => q{Module YAML meta-data (added by MakeMaker)}}) }' \
-	  -e '    or print "Could not add META.yml to MANIFEST: $${'\''@'\''}\n"' --
+	  -e '    or print "Could not add META.yml to MANIFEST: $$$${'\''@'\''}\n"' --
 	$(NOECHO) cd $(DISTVNAME) && $(ABSPERLRUN) -MExtUtils::Manifest=maniadd -e 'exit unless -f q{META.json};' \
 	  -e 'eval { maniadd({q{META.json} => q{Module JSON meta-data (added by MakeMaker)}}) }' \
-	  -e '    or print "Could not add META.json to MANIFEST: $${'\''@'\''}\n"' --
+	  -e '    or print "Could not add META.json to MANIFEST: $$$${'\''@'\''}\n"' --
 
 
 
 # --- MakeMaker distsignature section:
 distsignature : create_distdir
 	$(NOECHO) cd $(DISTVNAME) && $(ABSPERLRUN) -MExtUtils::Manifest=maniadd -e 'eval { maniadd({q{SIGNATURE} => q{Public-key signature (added by MakeMaker)}}) } ' \
-	  -e '    or print "Could not add SIGNATURE to MANIFEST: $${'\''@'\''}\n"' --
+	  -e '    or print "Could not add SIGNATURE to MANIFEST: $$$${'\''@'\''}\n"' --
 	$(NOECHO) cd $(DISTVNAME) && $(TOUCH) SIGNATURE
 	cd $(DISTVNAME) && cpansign -s
 
@@ -754,7 +754,7 @@ $(FIRST_MAKEFILE) : Makefile.PL $(CONFIGDEP)
 
 # --- MakeMaker makeaperl section ---
 MAP_TARGET    = perl
-FULLPERL      = /opt/local/bin/perl
+FULLPERL      = /opt/local/bin/perl5.16
 
 $(MAP_TARGET) :: static $(MAKE_APERL_FILE)
 	$(MAKE) $(USEMAKEFILE) $(MAKE_APERL_FILE) $@
@@ -798,7 +798,7 @@ testdb_static :: testdb_dynamic
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
-	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="1.1">' > $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="$(VERSION)">' > $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <ABSTRACT>functions for stemma analysis of a tradition</ABSTRACT>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>Tara L Andrews &lt;aurum@cpan.org&gt;</AUTHOR>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> $(DISTNAME).ppd
@@ -818,7 +818,7 @@ ppd :
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Text::Tradition" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Text::Tradition::Error" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="TryCatch::" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="darwin-multi-2level-5.12" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="darwin-thread-multi-2level-5.16" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <CODEBASE HREF="" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    </IMPLEMENTATION>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '</SOFTPKG>' >> $(DISTNAME).ppd
@@ -843,7 +843,7 @@ pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
 
 
 # End.
-# Postamble by Module::Install 1.04
+# Postamble by Module::Install 1.06
 # --- Module::Install::Admin::Makefile section:
 
 realclean purge ::

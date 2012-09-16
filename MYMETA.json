@@ -4,7 +4,7 @@
       "Tara L Andrews <aurum@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "ExtUtils::MakeMaker version 6.62, CPAN::Meta::Converter version 2.112150",
+   "generated_by" : "ExtUtils::MakeMaker version 6.6302, CPAN::Meta::Converter version 2.120630",
    "license" : [
       "perl_5"
    ],
@@ -22,33 +22,33 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.62",
-            "Test::More::UTF8" : 0,
-            "Text::Tradition::Directory" : 0
+            "ExtUtils::MakeMaker" : "6.59",
+            "Test::More::UTF8" : "0",
+            "Text::Tradition::Directory" : "0"
          }
       },
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : 0
+            "ExtUtils::MakeMaker" : "0"
          }
       },
       "runtime" : {
          "requires" : {
-            "Algorithm::Diff" : 0,
-            "Bio::Phylo::IO" : 0,
-            "File::Which" : 0,
-            "File::chdir" : 0,
-            "Graph" : 0,
-            "Graph::Reader::Dot" : 0,
-            "IPC::Run" : 0,
-            "JSON" : 0,
-            "LWP::UserAgent" : 0,
-            "Moose" : 0,
-            "Moose::Role" : 0,
-            "Set::Scalar" : 0,
-            "Text::Tradition" : 0,
-            "Text::Tradition::Error" : 0,
-            "TryCatch" : 0,
+            "Algorithm::Diff" : "0",
+            "Bio::Phylo::IO" : "0",
+            "File::Which" : "0",
+            "File::chdir" : "0",
+            "Graph" : "0",
+            "Graph::Reader::Dot" : "0",
+            "IPC::Run" : "0",
+            "JSON" : "0",
+            "LWP::UserAgent" : "0",
+            "Moose" : "0",
+            "Moose::Role" : "0",
+            "Set::Scalar" : "0",
+            "Text::Tradition" : "0",
+            "Text::Tradition::Error" : "0",
+            "TryCatch" : "0",
             "perl" : "5.012"
          }
       }
