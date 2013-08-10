@@ -46,7 +46,7 @@
             "Moose" : "0",
             "Moose::Role" : "0",
             "Set::Scalar" : "0",
-            "Text::Tradition" : "0",
+            "Text::Tradition" : "1.2",
             "Text::Tradition::Error" : "0",
             "TryCatch" : "0",
             "perl" : "5.012"
@@ -54,5 +54,5 @@
       }
    },
    "release_status" : "stable",
-   "version" : "1.1"
+   "version" : "1.2"
 }
