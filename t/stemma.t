@@ -5,7 +5,7 @@ use File::Which;
 use Test::More;
 use lib 'lib';
 use Text::Tradition;
-use Text::Tradition::StemmaUtil qw/ character_input phylip_pars parse_newick /;
+use Text::Tradition::StemmaUtil qw/ character_input phylip_pars /;
 use TryCatch;
 
 my $datafile = 't/data/Collatex-16.xml'; #TODO need other test data
@@ -54,7 +54,7 @@ SKIP: {
 	my $newick = phylip_pars( $mstr );
 	ok( $newick, "pars ran successfully" );
 
-	my $trees = parse_newick( $newick );
+	my $trees = Text::Tradition::Stemma->new_from_newick( $newick );
 	# Test that we get a tree
 	is( scalar @$trees, 1, "Got a single tree" );
 	# Test that the tree has all our witnesses
@@ -64,10 +64,31 @@ SKIP: {
 
 # Test our dot output
 my $display = $stemma->as_dot();
-ok( $display =~ /digraph/, "Got a dot display graph" );
+like( $display, qr/^digraph \"?Stemma/, "Got a dot display graph" );
 ok( $display !~ /hypothetical/, "Graph is display rather than edit" );
 # Test our editable output
 my $editable = $stemma->editable();
-ok( $editable =~ /digraph/, "Got a dot edit graph" );
+like( $editable, qr/^digraph \"?Stemma/, "Got a dot edit graph" );
 ok( $editable =~ /hypothetical/, "Graph contains an edit class" );
+
+# Test changing the name of the Graph
+$editable =~ s/Stemma/Simple test stemma/;
+$stemma->alter_graph( $editable );
+is( $stemma->identifier, "Simple test stemma", "Successfully changed name of graph" );
+
+# Test re-rooting of our graph
+try {
+	$stemma->root_graph('D');
+	ok( 0, "Made attempt to root stemma graph on nonexistent vertex" );
+} catch( Text::Tradition::Error $e ) {
+	like( $e->message, qr/Cannot orient graph(.*)on nonexistent vertex/,
+		"Exception raised for attempt to root graph on nonexistent vertex" );
+}
+$stemma->root_graph( 'B' );
+is( $stemma->graph, '1-A,2-1,2-C,B-2', 
+	"Stemma graph successfully re-rooted on vertex B" );
+is( $stemma->identifier, "Simple test stemma", 
+	"Stemma identifier survived re-rooting of graph" );
+
+
 done_testing();

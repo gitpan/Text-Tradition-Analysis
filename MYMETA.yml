@@ -22,6 +22,8 @@ no_index:
 requires:
   Algorithm::Diff: 0
   Bio::Phylo::IO: 0
+  Data::Validate::IP: 0
+  Date::Parse: 0
   File::Which: 0
   File::chdir: 0
   Graph: 0
@@ -32,8 +34,8 @@ requires:
   Moose: 0
   Moose::Role: 0
   Set::Scalar: 0
-  Text::Tradition: 1.2
+  Text::Tradition: v2.0.0
   Text::Tradition::Error: 0
   TryCatch: 0
   perl: 5.012
-version: 1.2
+version: v2.0.0

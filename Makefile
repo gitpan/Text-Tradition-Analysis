@@ -20,8 +20,8 @@
 #     MIN_PERL_VERSION => q[5.012]
 #     NAME => q[Text::Tradition::Analysis]
 #     NO_META => q[1]
-#     PREREQ_PM => { IPC::Run=>q[0], Bio::Phylo::IO=>q[0], File::Which=>q[0], Graph=>q[0], File::chdir=>q[0], Text::Tradition=>q[1.2], Text::Tradition::Directory=>q[0], Text::Tradition::Error=>q[0], Algorithm::Diff=>q[0], Moose=>q[0], Moose::Role=>q[0], ExtUtils::MakeMaker=>q[6.59], Test::More::UTF8=>q[0], Set::Scalar=>q[0], TryCatch=>q[0], LWP::UserAgent=>q[0], Graph::Reader::Dot=>q[0], JSON=>q[0] }
-#     VERSION => q[1.2]
+#     PREREQ_PM => { IPC::Run=>q[0], Bio::Phylo::IO=>q[0], File::Which=>q[0], Graph=>q[0], File::chdir=>q[0], Text::Tradition=>q[2.0.0], Text::Tradition::Directory=>q[0], Data::Validate::IP=>q[0], Text::Tradition::Error=>q[0], Algorithm::Diff=>q[0], Moose=>q[0], Moose::Role=>q[0], ExtUtils::MakeMaker=>q[6.59], Test::More::UTF8=>q[0], Date::Parse=>q[0], Set::Scalar=>q[0], TryCatch=>q[0], LWP::UserAgent=>q[0], Graph::Reader::Dot=>q[0], JSON=>q[0] }
+#     VERSION => q[2.0.0]
 #     VERSION_FROM => q[lib/Text/Tradition/Analysis.pm]
 #     dist => { PREOP=>q[$(PERL) -I. "-MModule::Install::Admin" -e "dist_preop(q($(DISTVNAME)))"] }
 #     realclean => { FILES=>q[MYMETA.yml] }
@@ -31,7 +31,7 @@
 
 # --- MakeMaker const_config section:
 
-# These definitions are from config.sh (via /opt/local/lib/perl5/5.16.1/darwin-thread-multi-2level/Config.pm).
+# These definitions are from config.sh (via /opt/local/lib/perl5/5.16.3/darwin-thread-multi-2level/Config.pm).
 # They may have been overridden via Makefile.PL or on the command line.
 AR = ar
 CC = /usr/bin/clang
@@ -41,20 +41,20 @@ DLEXT = bundle
 DLSRC = dl_dlopen.xs
 EXE_EXT = 
 FULL_AR = /usr/bin/ar
-LD = env MACOSX_DEPLOYMENT_TARGET=10.8 /usr/bin/clang
-LDDLFLAGS = -L/opt/local/lib  -bundle -undefined dynamic_lookup -fstack-protector
-LDFLAGS = -L/opt/local/lib  -fstack-protector
+LD = env MACOSX_DEPLOYMENT_TARGET=10.3 /usr/bin/clang
+LDDLFLAGS = -L/opt/local/lib -Wl,-headerpad_max_install_names  -bundle -undefined dynamic_lookup -fstack-protector
+LDFLAGS = -L/opt/local/lib -Wl,-headerpad_max_install_names  -fstack-protector
 LIBC = 
 LIB_EXT = .a
 OBJ_EXT = .o
 OSNAME = darwin
-OSVERS = 12.3.0
+OSVERS = 14.0.0
 RANLIB = ranlib
-SITELIBEXP = /opt/local/lib/perl5/site_perl/5.16.1
-SITEARCHEXP = /opt/local/lib/perl5/site_perl/5.16.1/darwin-thread-multi-2level
+SITELIBEXP = /opt/local/lib/perl5/site_perl/5.16.3
+SITEARCHEXP = /opt/local/lib/perl5/site_perl/5.16.3/darwin-thread-multi-2level
 SO = dylib
-VENDORARCHEXP = /opt/local/lib/perl5/vendor_perl/5.16.1/darwin-thread-multi-2level
-VENDORLIBEXP = /opt/local/lib/perl5/vendor_perl/5.16.1
+VENDORARCHEXP = /opt/local/lib/perl5/vendor_perl/5.16.3/darwin-thread-multi-2level
+VENDORLIBEXP = /opt/local/lib/perl5/vendor_perl/5.16.3
 
 
 # --- MakeMaker constants section:
@@ -63,11 +63,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = Text::Tradition::Analysis
 NAME_SYM = Text_Tradition_Analysis
-VERSION = 1.2
+VERSION = 2.0.0
 VERSION_MACRO = VERSION
-VERSION_SYM = 1_2
+VERSION_SYM = 2_0_0
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 1.2
+XS_VERSION = 2.0.0
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -84,17 +84,17 @@ PREFIX = $(SITEPREFIX)
 PERLPREFIX = /opt/local
 SITEPREFIX = /opt/local
 VENDORPREFIX = /opt/local
-INSTALLPRIVLIB = /opt/local/lib/perl5/5.16.1
+INSTALLPRIVLIB = /opt/local/lib/perl5/5.16.3
 DESTINSTALLPRIVLIB = $(DESTDIR)$(INSTALLPRIVLIB)
-INSTALLSITELIB = /opt/local/lib/perl5/site_perl/5.16.1
+INSTALLSITELIB = /opt/local/lib/perl5/site_perl/5.16.3
 DESTINSTALLSITELIB = $(DESTDIR)$(INSTALLSITELIB)
-INSTALLVENDORLIB = /opt/local/lib/perl5/vendor_perl/5.16.1
+INSTALLVENDORLIB = /opt/local/lib/perl5/vendor_perl/5.16.3
 DESTINSTALLVENDORLIB = $(DESTDIR)$(INSTALLVENDORLIB)
-INSTALLARCHLIB = /opt/local/lib/perl5/5.16.1/darwin-thread-multi-2level
+INSTALLARCHLIB = /opt/local/lib/perl5/5.16.3/darwin-thread-multi-2level
 DESTINSTALLARCHLIB = $(DESTDIR)$(INSTALLARCHLIB)
-INSTALLSITEARCH = /opt/local/lib/perl5/site_perl/5.16.1/darwin-thread-multi-2level
+INSTALLSITEARCH = /opt/local/lib/perl5/site_perl/5.16.3/darwin-thread-multi-2level
 DESTINSTALLSITEARCH = $(DESTDIR)$(INSTALLSITEARCH)
-INSTALLVENDORARCH = /opt/local/lib/perl5/vendor_perl/5.16.1/darwin-thread-multi-2level
+INSTALLVENDORARCH = /opt/local/lib/perl5/vendor_perl/5.16.3/darwin-thread-multi-2level
 DESTINSTALLVENDORARCH = $(DESTDIR)$(INSTALLVENDORARCH)
 INSTALLBIN = /opt/local/bin
 DESTINSTALLBIN = $(DESTDIR)$(INSTALLBIN)
@@ -121,13 +121,13 @@ DESTINSTALLSITEMAN3DIR = $(DESTDIR)$(INSTALLSITEMAN3DIR)
 INSTALLVENDORMAN3DIR = /opt/local/share/perl5.16/man/man3
 DESTINSTALLVENDORMAN3DIR = $(DESTDIR)$(INSTALLVENDORMAN3DIR)
 PERL_LIB =
-PERL_ARCHLIB = /opt/local/lib/perl5/5.16.1/darwin-thread-multi-2level
+PERL_ARCHLIB = /opt/local/lib/perl5/5.16.3/darwin-thread-multi-2level
 LIBPERL_A = libperl.a
 FIRST_MAKEFILE = Makefile
 MAKEFILE_OLD = Makefile.old
 MAKE_APERL_FILE = Makefile.aperl
 PERLMAINCC = $(CC)
-PERL_INC = /opt/local/lib/perl5/5.16.1/darwin-thread-multi-2level/CORE
+PERL_INC = /opt/local/lib/perl5/5.16.3/darwin-thread-multi-2level/CORE
 PERL = /opt/local/bin/perl5.16 "-Iinc"
 FULLPERL = /opt/local/bin/perl5.16 "-Iinc"
 ABSPERL = $(PERL)
@@ -142,7 +142,7 @@ PERM_DIR = 755
 PERM_RW = 644
 PERM_RWX = 755
 
-MAKEMAKER   = /opt/local/lib/perl5/5.16.1/ExtUtils/MakeMaker.pm
+MAKEMAKER   = /opt/local/lib/perl5/5.16.3/ExtUtils/MakeMaker.pm
 MM_VERSION  = 6.6302
 MM_REVISION = 66302
 
@@ -168,6 +168,7 @@ O_FILES  =
 H_FILES  = 
 MAN1PODS = 
 MAN3PODS = lib/Text/Tradition/Analysis.pm \
+	lib/Text/Tradition/Analysis/IDPUtil.pm \
 	lib/Text/Tradition/Analysis/Result.pm \
 	lib/Text/Tradition/HasStemma.pm \
 	lib/Text/Tradition/Stemma.pm \
@@ -194,6 +195,7 @@ PERL_ARCHIVE_AFTER =
 
 
 TO_INST_PM = lib/Text/Tradition/Analysis.pm \
+	lib/Text/Tradition/Analysis/IDPUtil.pm \
 	lib/Text/Tradition/Analysis/Result.pm \
 	lib/Text/Tradition/HasStemma.pm \
 	lib/Text/Tradition/Stemma.pm \
@@ -203,6 +205,8 @@ PM_TO_BLIB = lib/Text/Tradition/Analysis/Result.pm \
 	blib/lib/Text/Tradition/Analysis/Result.pm \
 	lib/Text/Tradition/StemmaUtil.pm \
 	blib/lib/Text/Tradition/StemmaUtil.pm \
+	lib/Text/Tradition/Analysis/IDPUtil.pm \
+	blib/lib/Text/Tradition/Analysis/IDPUtil.pm \
 	lib/Text/Tradition/HasStemma.pm \
 	blib/lib/Text/Tradition/HasStemma.pm \
 	lib/Text/Tradition/Analysis.pm \
@@ -277,7 +281,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = Text-Tradition-Analysis
-DISTVNAME = Text-Tradition-Analysis-1.2
+DISTVNAME = Text-Tradition-Analysis-2.0.0
 
 
 # --- MakeMaker macro section:
@@ -432,12 +436,14 @@ POD2MAN = $(POD2MAN_EXE)
 manifypods : pure_all  \
 	lib/Text/Tradition/Analysis/Result.pm \
 	lib/Text/Tradition/StemmaUtil.pm \
+	lib/Text/Tradition/Analysis/IDPUtil.pm \
 	lib/Text/Tradition/HasStemma.pm \
 	lib/Text/Tradition/Analysis.pm \
 	lib/Text/Tradition/Stemma.pm
 	$(NOECHO) $(POD2MAN) --section=3 --perm_rw=$(PERM_RW) \
 	  lib/Text/Tradition/Analysis/Result.pm $(INST_MAN3DIR)/Text::Tradition::Analysis::Result.$(MAN3EXT) \
 	  lib/Text/Tradition/StemmaUtil.pm $(INST_MAN3DIR)/Text::Tradition::StemmaUtil.$(MAN3EXT) \
+	  lib/Text/Tradition/Analysis/IDPUtil.pm $(INST_MAN3DIR)/Text::Tradition::Analysis::IDPUtil.$(MAN3EXT) \
 	  lib/Text/Tradition/HasStemma.pm $(INST_MAN3DIR)/Text::Tradition::HasStemma.$(MAN3EXT) \
 	  lib/Text/Tradition/Analysis.pm $(INST_MAN3DIR)/Text::Tradition::Analysis.$(MAN3EXT) \
 	  lib/Text/Tradition/Stemma.pm $(INST_MAN3DIR)/Text::Tradition::Stemma.$(MAN3EXT) 
@@ -805,6 +811,8 @@ ppd :
 	$(NOECHO) $(ECHO) '        <PERLCORE VERSION="5,012,0,0" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Algorithm::Diff" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Bio::Phylo::IO" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Data::Validate::IP" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Date::Parse" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="File::Which" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="File::chdir" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Graph::" />' >> $(DISTNAME).ppd
@@ -815,7 +823,7 @@ ppd :
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Moose::" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Moose::Role" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Set::Scalar" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Text::Tradition" VERSION="1.2" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Text::Tradition" VERSION="2" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Text::Tradition::Error" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="TryCatch::" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="darwin-thread-multi-2level-5.16" />' >> $(DISTNAME).ppd
@@ -830,6 +838,7 @@ pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
 	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', q[$(PM_FILTER)], '\''$(PERM_DIR)'\'')' -- \
 	  lib/Text/Tradition/Analysis/Result.pm blib/lib/Text/Tradition/Analysis/Result.pm \
 	  lib/Text/Tradition/StemmaUtil.pm blib/lib/Text/Tradition/StemmaUtil.pm \
+	  lib/Text/Tradition/Analysis/IDPUtil.pm blib/lib/Text/Tradition/Analysis/IDPUtil.pm \
 	  lib/Text/Tradition/HasStemma.pm blib/lib/Text/Tradition/HasStemma.pm \
 	  lib/Text/Tradition/Analysis.pm blib/lib/Text/Tradition/Analysis.pm \
 	  lib/Text/Tradition/Stemma.pm blib/lib/Text/Tradition/Stemma.pm 

@@ -15,10 +15,10 @@ use TryCatch;
 
 use vars qw/ @EXPORT_OK $VERSION /;
 @EXPORT_OK = qw/ run_analysis group_variants analyze_variant_location wit_stringify /;
-$VERSION = "1.2";
+$VERSION = "2.0.0";
 
 
-my $SOLVER_URL = 'http://byzantini.st/cgi-bin/graphcalc.cgi';
+my $DEFAULT_SOLVER_URL = 'http://perf.byzantini.st/cgi-bin/graphcalc.cgi';
 my $unsolved_problems = {};
 
 =head1 NAME
@@ -170,18 +170,18 @@ sub run_analysis {
 		$collapse->insert( $opts{'merge_types'} );
 	}
 	
-	# Make sure we have a lookup DB for graph calculation results; this will die
-	# if calcdir or calcdsn isn't passed.
+	# If we have specified a local lookup DB for graph calculation results,
+	# make sure it exists and connect to it.
 	my $dir;
-	if( exists $opts{'calcdir'} ) {
-		$dir = delete $opts{'calcdir'}
-	} elsif ( exists $opts{'calcdsn'} ) {
+	if ( exists $opts{'calcdsn'} ) {
 		eval { require Text::Tradition::Directory };
 		if( $@ ) {
 			throw( "Could not instantiate a directory for " . $opts{'calcdsn'}
 				. ": $@" );
 		}
-		$dir = Text::Tradition::Directory->new( dsn => $opts{'calcdsn'} );
+		$opts{'dir'} = Text::Tradition::Directory->new( dsn => $opts{'calcdsn'} );
+	} elsif( !exists $opts{'solver_url'} ) {
+		$opts{'solver_url'} = $DEFAULT_SOLVER_URL;
 	}
 
 	# Get the stemma	
@@ -229,7 +229,7 @@ sub run_analysis {
 	# Run the solver
 	my $answer;
 	try {
-		$answer = solve_variants( $dir, @groups );
+		$answer = solve_variants( \%opts, @groups );
 	} catch ( Text::Tradition::Error $e ) {
 		if( $e->message =~ /IDP/ ) {
 			# Something is wrong with the solver; make the variants table anyway
@@ -514,8 +514,8 @@ sub _check_transposed_consistency {
 	if( @doubled == scalar keys %seen_wits ) {
 		foreach my $rdg ( keys %$groupings ) {
 			if( !$thisrank{$rdg} ) {
-				my $groupstr = wit_stringify( $groupings->{$rdg} );
-				my ( $matched ) = grep { $groupstr eq wit_stringify( $groupings->{$_} ) }
+				# Groupings are Set::Scalar objects so we can compare them outright.
+				my ( $matched ) = grep { $groupings->{$rdg} == $groupings->{$_} }
 					keys %thisrank;
 				delete $groupings->{$rdg};
 				# If we found a group match, assume there is a symmetry happening.
@@ -591,14 +591,10 @@ The answer has the form
 =cut
 
 sub solve_variants {
-	my( @groups ) = @_;
+	my( $opts, @groups ) = @_;
 	
-	# Are we using a local result directory, or did we pass an empty value
-	# for the directory?
-	my $dir;
-	unless( ref( $groups[0] ) eq 'HASH' ) {
-		$dir = shift @groups;
-	}
+	# Are we using a local result directory?
+	my $dir = $opts->{dir};
 
 	## For each graph/group combo, make a Text::Tradition::Analysis::Result
 	## object so that we can send it off for IDP lookup.
@@ -624,12 +620,13 @@ sub solve_variants {
 		my $scope = $dir->new_scope;
 		map { $results{$_} = $dir->lookup( $_ ) || $problems{$_} } keys %problems;
 	} else {
+		# print STDERR "Using solver at " . $opts->{solver_url} . "\n";
 		my $json = JSON->new->allow_blessed->convert_blessed->utf8->encode( 
 			[ values %problems ] );
 		# Send it off and get the result
 		# print STDERR "Sending request: " . decode_utf8( $json ) . "\n";
 		my $ua = LWP::UserAgent->new();
-		my $resp = $ua->post( $SOLVER_URL, 'Content-Type' => 'application/json', 
+		my $resp = $ua->post( $opts->{solver_url}, 'Content-Type' => 'application/json', 
 							  'Content' => $json );	
 		my $answer;	
 		if( $resp->is_success ) {
@@ -833,6 +830,13 @@ sub _resolve_parent_relationships {
 		my $prep = $pobj ? $pobj->id . ' (' . $pobj->text . ')' : $p;
 		my $phash = { 'label' => $prep };
 		if( $pobj ) {
+			# Get the attributes of the parent object while we are here
+			$phash->{'text'} = $pobj->text if $pobj;
+			if( $pobj && $pobj->does('Text::Tradition::Morphology') ) {
+				$phash->{'is_nonsense'} = $pobj->is_nonsense;
+				$phash->{'is_ungrammatical'} = $pobj->grammar_invalid;
+			}
+			# Now look at the relationship
 			my $rel = $c->get_relationship( $p, $rid );
 			if( $rel && $rel->type eq 'collated' ) {
 				$rel = undef;
@@ -873,12 +877,6 @@ sub _resolve_parent_relationships {
 			} else {
 				$phash->{relation} = { type => 'deletion' };
 			}
-			# Get the attributes of the parent object while we are here
-			$phash->{'text'} = $pobj->text if $pobj;
-			if( $pobj && $pobj->does('Text::Tradition::Morphology') ) {
-				$phash->{'is_nonsense'} = $pobj->is_nonsense;
-				$phash->{'is_ungrammatical'} = $pobj->grammar_invalid;
-			}
 		} elsif( $p eq '(omitted)' ) {
 			# Check to see if the reading in question is a repetition.
 			my @reps = $rdg->related_readings( 'repetition' );
@@ -900,6 +898,14 @@ sub _add_to_hash {
 	$phash->{relation}->{transposed} = 1 if $is_transposed;
 	$phash->{relation}->{annotation} = $rel->annotation
 		if $rel->has_annotation;
+	# Get all the relevant relationship info.
+	foreach my $prop ( qw/ non_independent is_significant / ) {
+		$phash->{relation}->{$prop} = $rel->$prop;
+	}
+	# Figure out if the variant was judged revertible.
+	my $is_a = $rel->reading_a eq $phash->{text};
+	$phash->{revertible} = $is_a 
+		? $rel->a_derivable_from_b : $rel->b_derivable_from_a;
 }
 
 =head2 similar( $word1, $word2 )

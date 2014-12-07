@@ -7,6 +7,8 @@ perl_version( '5.012' );
 all_from( 'lib/Text/Tradition/Analysis.pm' );
 requires( 'Algorithm::Diff' );
 requires( 'Bio::Phylo::IO' );
+requires( 'Data::Validate::IP' );
+requires( 'Date::Parse' );
 requires( 'File::chdir' );
 requires( 'File::Which' );
 requires( 'Graph' );
@@ -17,7 +19,7 @@ requires( 'LWP::UserAgent' );
 requires( 'Moose' );
 requires( 'Moose::Role' );
 requires( 'Set::Scalar' );
-requires( 'Text::Tradition' => '1.2' );
+requires( 'Text::Tradition' => '2.0.0' );
 requires( 'Text::Tradition::Error' );
 requires( 'TryCatch' );
 
